@@ -1,0 +1,60 @@
+<div>
+    <input 
+        type = "text"
+        placeholder="Search task board"
+        (input)="onSearchChange($any($event.target).value)"
+    />
+
+    <select (change)="onStatusChange($any($event.target).value)">
+        <option value="all">All Statuses</option>
+        <option value="in-progress">In Progress</option>
+        <option value="review">Review</option>
+        <option value="done">Done</option>
+        <option value="backlog">Backlog</option>
+    </select>
+
+    <select (change)="onPriorityChange($any($event.target).value)">
+        <option value="all">All</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+    </select>
+
+    <app-task-detail></app-task-detail>
+    
+    <ng-template #noTask>
+        <p>Select a task to view details.</p>
+    </ng-template>
+
+    <app-task-column
+        title="Backlog"
+        status="backlog"
+        [tasks]="(backlogTasks$ | async) ?? []"
+        (taskSelected)="onTaskSelected($event)"
+        (taskMoved)="onMove($event)"
+    ></app-task-column>
+    <app-task-column
+        title="In-progress"
+        status="in-progress"
+        [tasks]="(inProgressTasks$ | async) ?? []"
+        (taskSelected)="onTaskSelected($event)"
+        (taskMoved)="onMove($event)"
+        ></app-task-column>
+    <app-task-column
+        title="Under Review"
+        status="review"
+        [tasks]="(inReviewTasks$ | async) ?? []"
+        (taskSelected)="onTaskSelected($event)"
+        (taskMoved)="onMove($event)"
+        ></app-task-column>
+    <app-task-column
+        title="Done"
+        status="done"
+        [tasks]="(completedTasks$ | async) ?? []"
+        (taskSelected)="onTaskSelected($event)"
+        (taskMoved)="onMove($event)">
+        
+    </app-task-column>
+
+</div>
+

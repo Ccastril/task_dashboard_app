@@ -1,0 +1,11 @@
+<div>
+    <h2>{{title}}</h2>
+<!--do you need an async pipe? -->
+    <app-task-card
+  *ngFor="let task of tasks"
+  [task]="task"
+  (selected)="selectTask($event)"
+  (moved)="moveTask($event)"
+></app-task-card>
+</div>
+

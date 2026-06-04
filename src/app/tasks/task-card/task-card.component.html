@@ -1,0 +1,14 @@
+<div>
+    <h2>{{task.id}}</h2>
+    <p>{{task.description}}</p>
+    <p>{{task.status}}</p>
+    <P>{{task.assignee}}</P>
+    <button (click)="onSelect()">Select Card
+    </button>
+    <select (change)="onMove($any($event.target).value)">
+       <option value="in-progress">In Progress</option>
+        <option value="review">Review</option>
+        <option value="done">Done</option>
+        <option value="backlog">Backlog</option>
+    </select>
+</div>

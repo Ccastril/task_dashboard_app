@@ -1,0 +1,11 @@
+<section *ngIf="selectedTask$ | async as task; else noTask">
+    <h2>{{ task.title }}</h2>
+  <p>{{ task.description }}</p>
+  <p>Assignee: {{ task.assignee }}</p>
+  <p>Priority: {{ task.priority }}</p>
+  <p>Status: {{ task.status }}</p>
+</section>
+
+<ng-template #noTask>
+  <p>Select a task to view details.</p>
+</ng-template>
